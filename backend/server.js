@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors')
 const Course = require('./models/course');
+const Counter = require('./models/counter');
 
 const app = express();
 const port = 5000;
@@ -9,7 +10,14 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
+
+Counter.findByIdAndUpdate(
+  { _id: 'courseId' },
+  { $setOnInsert: { seq: 0 } },
+  { upsert: true, new: true }
+).then(() => console.log('Initialized counter.')).catch(console.error);
+
 
 app.get('/api/courses', async (req, res) => {
   const courses = await Course.find();

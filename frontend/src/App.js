@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Course Manager</h1>
+      <h1>Course Management System</h1>
       
       <form onSubmit={addCourse}>
         <input
@@ -86,7 +86,7 @@ function App() {
       <ul>
         {courses.map((course) => (
           <li key={course._id}>
-            {course.subject} {course.courseNumber} - {course.description}
+            "{course.id}","{course.subject}", "{course.courseNumber}", "{course.description}"
             <button onClick={() => deleteCourse(course._id)}>Delete</button>
           </li>
         ))}
