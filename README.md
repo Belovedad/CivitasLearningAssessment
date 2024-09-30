@@ -117,7 +117,7 @@ To run the application using Docker:
 
 1. Build the Docker image:
    ```
-  Docker-compose up --build .
+   Docker-compose up --build 
    ```
 
 
